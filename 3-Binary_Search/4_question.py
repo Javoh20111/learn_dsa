@@ -16,5 +16,15 @@ Sample Output 1:
 from collections import Counter
 import math
 
-s = list(input().strip())
+letters = list(input().strip())
 
+def count_balloon(letters):
+    available = Counter(letters)
+    required = Counter('balloon')
+
+    max_balloons = math.inf
+
+    for char in required:
+        max_balloons = min(max_balloons, available[char]//required[char])
+        return max_balloons
+print(count_balloon(letters))
