@@ -20,3 +20,11 @@ Sample Output 2:
 false
 Several letters are missing.
  """
+
+import string
+alp = set(string.ascii_lowercase)
+sentence = set(input())
+if alp == sentence:
+    print('true')
+else:
+    print('false')
