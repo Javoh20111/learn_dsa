@@ -23,7 +23,7 @@ Sort by weight: [500, 1000, 1500, 2000, 3000]. Take 500 + 1000 + 1500 + 2000 = 5
 
 """
 
-n = int(input())
+""" n = int(input())
 arr = list(map(int, input().split()))
 arr.sort()
 count = 0
@@ -33,4 +33,22 @@ for i in arr:
     total += i 
     if total <= 5000:
         count+=1
+print(count) """
+
+from heapq import heapify, heappop, heappush
+
+n = int(input())
+a = list(map(int, input().split()))
+
+heapify(a)
+count = 0
+total = 0
+while total < 5000 and a:
+    x = heappop(a)
+    if total + x <= 5000:
+        total += x
+        count += 1
+    else:
+        break
+
 print(count)
