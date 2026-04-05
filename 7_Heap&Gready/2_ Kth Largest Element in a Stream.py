@@ -30,6 +30,8 @@ Sample Output 1:
 5
 Initial: [4, 5, 8, 2]. Add 3 → [2, 3, 4, 5, 8], 3rd largest = 4. Add 5 → [2, 3, 4, 5, 5, 8], 3rd largest = 5. Add 10 → [2, 3, 4, 5, 5, 8, 10], 3rd largest = 5.
 """
+
+# 1-first solution
 import bisect
 
 n,k = map(int, input().split())
@@ -43,3 +45,19 @@ for i in range(0,m):
     res.append(arr[-k])
 for i in res:
     print(i)
+
+# 2-first solution
+
+from heapq import heapify, heappop, heappush, heappushpop
+
+n,k = map(int, input().split())
+arr = list(map(int, input().split()))
+heapify(arr)
+m = int(input())
+for i in range(m):
+    while len(arr)>k:
+        heappop(arr)
+    sec_list = int(input())
+    if sec_list > arr[0]:
+        heappushpop(arr, sec_list)
+    print(arr[0])
