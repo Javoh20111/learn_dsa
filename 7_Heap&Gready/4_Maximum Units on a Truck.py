@@ -24,3 +24,23 @@ Sample Output 1:
 8
 Sort by units per box descending: [(1, 3), (2, 2), (3, 1)]. Take 1 box of 3 units = 3, remaining capacity = 3. Take 2 boxes of 2 units = 4, remaining = 1. Take 1 box of 1 unit = 1, remaining = 0. Total = 3 + 4 + 1 = 8.
 """
+
+n, truckSize = map(int, input().split())
+packages = []
+
+for _ in range(n):
+    numberOfBoxes, numberOfUnitsPerBox = map(int, input().split())
+    packages.append((numberOfBoxes, numberOfUnitsPerBox))
+packages.sort(key=lambda x: x[1], reverse=True)
+
+total_units = 0
+used_space = 0
+
+for numberOfBoxes, unitsPerBox in packages:
+    if used_space == truckSize:
+        break
+    take = min(truckSize - used_space, numberOfBoxes)
+    total_units+=take*unitsPerBox
+    used_space += take
+
+print(total_units)
