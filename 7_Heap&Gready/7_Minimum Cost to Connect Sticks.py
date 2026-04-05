@@ -18,3 +18,19 @@ Sample Output 1:
 19
 Connect 1 and 2 → cost 3, sticks = [3, 4, 3]. Connect 3 and 3 → cost 6, sticks = [4, 6]. Connect 4 and 6 → cost 10, sticks = [10]. Total = 3 + 6 + 10 = 19.
 """
+
+from heapq import heapify, heappop, heappushpop, heappush
+n = int(input())
+arr = list(map(int, input().split()))
+heapify(arr)
+main_result = []
+
+while arr:
+    if len(arr) <= 1:
+        break
+    pop1 = heappop(arr)
+    pop2 = heappop(arr)
+    result = pop1 + pop2
+    main_result.append(result)
+    heappush(arr, result)
+print(sum(main_result))
