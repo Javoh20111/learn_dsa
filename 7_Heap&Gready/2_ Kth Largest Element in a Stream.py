@@ -30,4 +30,16 @@ Sample Output 1:
 5
 Initial: [4, 5, 8, 2]. Add 3 → [2, 3, 4, 5, 8], 3rd largest = 4. Add 5 → [2, 3, 4, 5, 5, 8], 3rd largest = 5. Add 10 → [2, 3, 4, 5, 5, 8, 10], 3rd largest = 5.
 """
+import bisect
 
+n,k = map(int, input().split())
+arr = list(map(int, input().split()))
+arr.sort()
+m = int(input())
+res = []
+for i in range(0,m):
+    sec_list = int(input())
+    bisect.insort(arr, sec_list)
+    res.append(arr[-k])
+for i in res:
+    print(i)
