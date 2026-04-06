@@ -35,6 +35,7 @@ edges = []
 for _ in range(m):
     a, b = map(int, input().split())
     edges.append([a, b])
+
 def count_components(n, edges):
     graph = {}
     for i in range(n):
@@ -59,5 +60,7 @@ def count_components(n, edges):
             components += 1
     
     return components
+
+
 result = count_components(n, edges)
 print(result)
