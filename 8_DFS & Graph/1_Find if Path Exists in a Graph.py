@@ -37,9 +37,7 @@ There are two paths from vertex 0 to vertex 2: 0 → 1 → 2 and 0 → 2.
 
 
 """
-
 import sys
-
 sys.setrecursionlimit(200000)
 n,m = map(int, input().split())
 
