@@ -21,3 +21,14 @@ leEeetcode
 Sample Output 1:
 leetcode
 """
+
+from collections import deque
+mas = deque()
+string = input()
+
+for ch in string:
+    if mas and mas[-1] == ch.swapcase():
+        mas.pop()
+    else:
+        mas.append(ch)
+print(''.join(mas))
