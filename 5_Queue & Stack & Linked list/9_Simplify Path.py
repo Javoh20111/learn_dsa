@@ -22,7 +22,7 @@ path starts with /
 path contains English letters, digits, _, ., and /
  """
 from collections import deque
-parts = input().split('/')
+parts = input().strip().split('/')
 stack = deque()
 
 for element in parts:
