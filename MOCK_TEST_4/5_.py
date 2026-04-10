@@ -1,15 +1,4 @@
 """ 
-Shortest Path in Binary Matrix
-Submit solution
-All submissions
-Best submissions
-Points:25 (partial)
-Time limit:2.0s
-Memory limit:256M
-Problem type
-Allowed languages
-C#, C++, Java, PYPY3, Python
- Back to Mock Test 4
 Given an n x n binary matrix, find the length of the shortest clear path from the top-left cell (0, 0) to the bottom-right cell (n-1, n-1).
 
 A clear path visits only cells containing 0 and moves 8-directionally (horizontally, vertically, or diagonally to any adjacent cell). The length of the path is the number of cells visited, including start and end.

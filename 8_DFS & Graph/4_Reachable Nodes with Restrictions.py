@@ -36,11 +36,52 @@ The tree looks like (restricted node marked with X):
 
 Copy
         0
-      / | \
+      / | \\
      1 [4]X 5
-    / \       \
+    / \       \\
    2   3       6
 Node 4 is restricted. Starting from node 0, we can reach nodes {0, 1, 2, 3, 5, 6} by traversing edges without visiting node 4. That gives 6 reachable nodes.
  """
 
-from collections import 
+from collections import defaultdict, deque
+import sys
+input = sys.stdin.readline
+
+def solve():
+    ## take input 
+    n, r = map(int,input().split())
+    edges = []
+
+    for _ in range(n-1):
+        a_i, b_i = map(int,input().split())
+        edges.append([a_i, b_i])
+    
+
+    restricted = set(map(int,input().split()))
+
+    ## make a graph
+    graph = defaultdict(list)
+    for a_i, b_i in edges:
+        graph[a_i].append(b_i)
+        graph[b_i].append(a_i)
+
+    ## create a dfs
+    stack = deque()
+    stack.append(0)
+    visited = set()
+
+
+    while stack:
+        node = stack.pop()
+        if node in visited:
+            continue
+        if node in restricted:
+            continue
+        visited.add(node)
+
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                stack.append(neighbor)
+    print(len(visited))
+
+solve()
