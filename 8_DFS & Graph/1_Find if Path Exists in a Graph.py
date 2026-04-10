@@ -37,27 +37,25 @@ There are two paths from vertex 0 to vertex 2: 0 → 1 → 2 and 0 → 2.
 
 
 """
-import sys
-sys.setrecursionlimit(200000)
-n,m = map(int, input().split())
+edges = [] 
+n, m = map(int, input().split())
 
-edges = []
-for _ in range(m):
-    v, e = map(int,input().split())
-    edges.append([v,e])
+for _ in range(m):   
+    u_i, v_i = map(int, input().split())
+    edges.append([u_i, v_i])
 s, d = map(int, input().split())
 
 def make_graph(n,edges, s, d):
     if s == d:
         return True
-
+    
     graph = {}
+
     for i in range(n):
         graph[i] = []
-
-    for v, e in edges:
-        graph[v].append(e)
-        graph[e].append(v)
+    for u_i, v_i in edges:
+        graph[u_i].append(v_i)
+        graph[v_i].append(u_i)
 
     visited = set()
 
