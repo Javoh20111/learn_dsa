@@ -37,28 +37,32 @@ There are two paths from vertex 0 to vertex 2: 0 → 1 → 2 and 0 → 2.
 
 
 """
-from collections import defaultdict
+from collections import deque, defaultdict
 import sys
 input = sys.stdin.readline
 
 def solve():
-    n, m = map(int, input().split())
-    graph = defaultdict(list)
+    ## Take input
+    n,m = map(int,input().split())
+    edges = []
 
     for _ in range(m):
-        u, v = map(int, input().split())
-        graph[u].append(v)
-        graph[v].append(u)
-
-    s, d = map(int, input().split())
-
+        u_i, v_i = map(int,input().split())
+        edges.append([u_i, v_i])
+    ## Make a graph
+    graph = defaultdict(list)
+    for u_i, v_i in edges:
+        graph[u_i].append(v_i)
+        graph[v_i].append(u_i)
+    
+    s,d = map(int,input().split())
     if s == d:
         print('true')
         return
-
+    ## create dfs
     visited = set()
-    stack = [s]
-
+    stack = deque()
+    stack.append(s)
     while stack:
         node = stack.pop()
         if node == d:
@@ -67,10 +71,10 @@ def solve():
         if node in visited:
             continue
         visited.add(node)
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                stack.append(neighbor)
-
+        for neigbor in graph[node]:
+            if neigbor not in visited:
+                stack.append(neigbor)
     print('false')
 
 solve()
+

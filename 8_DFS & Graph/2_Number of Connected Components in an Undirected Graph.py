@@ -28,39 +28,43 @@ There are two connected components: {0, 1, 2} and {3, 4}.
 """
 
 
+from collections import deque, defaultdict
+def solve():
+    ## Input
+    n, m = map(int, input().split())
+    edges = []
 
-n, m = map(int, input().split())
+    for _ in range(m):
+        a, b = map(int, input().split())
+        edges.append([a, b])
+    ## build graph
+    graph = defaultdict(list)
+    for a_i, b_i in edges:
+        graph[a_i].append(b_i)
+        graph[b_i].append(a_i)
 
-edges = []
-for _ in range(m):
-    a, b = map(int, input().split())
-    edges.append([a, b])
-
-def count_components(n, edges):
-    graph = {}
-    for i in range(n):
-        graph[i] = []
-    
-    for a, b in edges:
-        graph[a].append(b)
-        graph[b].append(a)
     visited = set()
-    
-    def dfs(node):
-        """Explore all nodes in one component"""
-        visited.add(node)
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                dfs(neighbor)
+    stack = deque()
+    count = 0
+    ## Make dfs search
+    def dfs(start):
+        stack.append(start)
+        while stack:
+            node = stack.pop()
+            if node in visited:
+                continue
+            visited.add(node)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    stack.append(neighbor)
 
-    components = 0
+    ## Count compounds
     for node in range(n):
         if node not in visited:
             dfs(node)
-            components += 1
+            count+=1
     
-    return components
+    print(count)
 
+solve()
 
-result = count_components(n, edges)
-print(result)

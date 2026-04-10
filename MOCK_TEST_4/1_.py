@@ -48,11 +48,12 @@ The exponent is 10^9, far too large for a naive loop. A recursive approach reduc
  """
 
 a,b = map(float, input().split())
-
-def recursion(a,b):
-    if b % 2 == 0:
-        return pow(a, b//2) ** 2
-    elif b % 2 == 1:
-        return a * pow(a, b-1)
-    
-print(f'{recursion(a,b):.5f}')
+MOD = 1000000007
+def recursion(a,b, mod=MOD):
+    if b == 0:
+        return 1      ## 2 10
+    if b % 2 == 1:
+        return a * recursion(a, b-1, MOD)
+    else:
+        return recursion(a*a, b//2, mod)
+print(f'{recursion(a,b, mod=MOD):.5f}')
