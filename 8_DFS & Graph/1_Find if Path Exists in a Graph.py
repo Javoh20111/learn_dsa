@@ -37,41 +37,40 @@ There are two paths from vertex 0 to vertex 2: 0 → 1 → 2 and 0 → 2.
 
 
 """
-edges = [] 
-n, m = map(int, input().split())
+from collections import defaultdict
+import sys
+input = sys.stdin.readline
 
-for _ in range(m):   
-    u_i, v_i = map(int, input().split())
-    edges.append([u_i, v_i])
-s, d = map(int, input().split())
+def solve():
+    n, m = map(int, input().split())
+    graph = defaultdict(list)
 
-def make_graph(n,edges, s, d):
+    for _ in range(m):
+        u, v = map(int, input().split())
+        graph[u].append(v)
+        graph[v].append(u)
+
+    s, d = map(int, input().split())
+
     if s == d:
-        return True
-    
-    graph = {}
-
-    for i in range(n):
-        graph[i] = []
-    for u_i, v_i in edges:
-        graph[u_i].append(v_i)
-        graph[v_i].append(u_i)
+        print('true')
+        return
 
     visited = set()
+    stack = [s]
 
-    def dfs(s):
-        # base case
-        if s == d:
-            return True
-
-        visited.add(s)
-
-        for neighbor in graph[s]:
+    while stack:
+        node = stack.pop()
+        if node == d:
+            print('true')
+            return
+        if node in visited:
+            continue
+        visited.add(node)
+        for neighbor in graph[node]:
             if neighbor not in visited:
-                if dfs(neighbor):
-                    return True
-        return False
-    return dfs(s)
+                stack.append(neighbor)
 
-result = make_graph(n,edges, s, d)
-print('true' if result else 'false')
+    print('false')
+
+solve()
