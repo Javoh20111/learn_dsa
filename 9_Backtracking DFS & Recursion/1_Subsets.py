@@ -36,24 +36,31 @@ start=[]
 │   └── [2,3]
 └── [3]
  """
+import sys
+input = sys.stdin.readline
 
-def generate_subsets(arr):
-    res = []
+def solve():
+    ## Take input
+    n = int(input())
+    arr = list(map(int, input().split()))
     arr.sort()
-    def backtrack(start, current):
-        res.append(current[:])
-        for i in range(start, len(arr)):
-            current.append(arr[i])
-            backtrack(i + 1, current)
-            current.pop()
-    backtrack(0, [])
-    res.sort(key=lambda x: (len(x), x))
-    return res
- 
- 
-n = int(input())
-arr = list(map(int, input().split()))
- 
-subsets = generate_subsets(arr)
-for subset in subsets:
-    print(' '.join(map(str, subset)))
+
+    ## create a list for storing subsets
+    subsets = []
+
+    ## implement backtracking
+    def bactracking(start, path):
+        subsets.append(path[:])
+        for i in range(start, n):
+            path.append(arr[i])
+            bactracking(i+1, path)
+            path.pop()
+    bactracking(0, [])
+
+    ## Sort the result by length
+    subsets.sort()
+    subsets.sort(key=len)
+
+    for s in subsets:
+        print(*s)
+solve()

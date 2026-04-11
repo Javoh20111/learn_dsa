@@ -39,6 +39,7 @@ def subset_sum(index, current_sum):
         return True
     if index == n or current_sum > target_sum:
         return False
+
     if subset_sum(index + 1, current_sum + arr[index]):
         return True
     if subset_sum(index + 1, current_sum):
