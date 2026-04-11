@@ -30,3 +30,51 @@ Copy
   . . . . .
 All land cells are connected into a single island.
  """
+
+from collections import defaultdict,deque
+import sys
+input = sys.stdin.readline
+
+def solve():
+    ## Take input
+    m,n = map(int, input().split())
+    grid = []
+
+    ## create a grid
+    for _ in range(m):
+        row = list(map(int,input().split()))
+        grid.append(row)
+
+    ## add directions
+    visited = set()
+    stack = deque()
+    directions = [(0,1),(0,-1),(1,0),(-1,0)]
+
+    ## Create dfs
+    def dfs(start_row, start_col):
+        stack.append((start_row, start_col))
+        while stack:
+            row, col = stack.pop()
+            if (row,col) in visited:
+                continue
+            visited.add((row, col))
+            for dr,dc in directions:
+                new_row = row+dr
+                new_col = col+dc
+                if 0 <=new_row < m and 0 <= new_col < n:
+                    if grid[new_row][new_col] == 1:
+                        if (new_row,new_col) not in visited:
+                            stack.append((new_row,new_col))
+                            
+    ## make a loop to find islands
+    count = 0
+    for row in range(m):
+        for col in range(n):
+            if grid[row][col] == 1 and (row, col) not in visited:
+                dfs(row,col)
+                count+=1
+    print(count)
+
+solve()
+
+
