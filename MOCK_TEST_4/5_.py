@@ -70,3 +70,49 @@ The grid has a single cell which is both start and end. The path length is 1.
 Source
 This problem is based on LeetCode 1091: Shortest Path in Binary Matrix.
  """
+
+from collections import deque
+import sys
+input = sys.stdin.readline
+
+def solve():
+    ## take input
+    n = int(input())
+    grid = list()
+
+    # make grid
+    for _ in range(n):
+        row = list(map(int, input().split()))
+        grid.append(row)
+
+    ## make directions
+    directions = [(0,1),
+                  (0,-1),
+                  (1,0),
+                  (-1,0),
+                  (-1,-1),
+                  (-1,1),
+                  (1,-1),
+                  (1,1)]
+    stack = deque()
+    visited = set()
+    ## make bfs
+    stack.append((0,0,1))
+    while stack:
+        row, col, step = stack.popleft()
+        if (row,col) in visited:
+            continue
+        if grid[row][col] == 1:
+            continue
+        visited.add((row,col))
+        if row == n-1 and col == n-1:
+            print(step)
+            return
+        for dr,dc in directions:
+            new_row = dr + row
+            new_col = dc + col
+            if 0<=new_row<n and 0<=new_col<n:
+                if (new_row, new_col) not in visited:
+                    stack.append((new_row, new_col, step+1))
+    print(-1)
+solve()

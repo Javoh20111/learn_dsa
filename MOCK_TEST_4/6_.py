@@ -1,15 +1,4 @@
 """ 
-Cheapest Flights Within K Stops
-Submit solution
-All submissions
-Best submissions
-Points:40 (partial)
-Time limit:2.0s
-Memory limit:256M
-Problem type
-Allowed languages
-C#, C++, Java, PYPY3, Python
- Back to Mock Test 4
 There are n cities (labeled 0 to n-1) connected by directed flights, each with a price. Find the cheapest price to travel from city src to city dst using at most k stops.
 
 A stop is an intermediate city. At most k stops means at most k+1 flights.
