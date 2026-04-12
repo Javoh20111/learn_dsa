@@ -55,6 +55,7 @@ def solve():
             path.pop()
     bkt(0,[])
 
+    ## print each subset
     subsets.sort()
     subsets.sort(key=len)
 

@@ -31,23 +31,26 @@ Backtracking tree (include/exclude each element):
 The algorithm explores including or excluding each element, pruning branches where the running sum exceeds the target.
  """
 
-n, target_sum = map(int, input().split())
-arr = list(map(int, input().split()))
  
-def subset_sum(index, current_sum):
-    if current_sum == target_sum:
-        return True
-    if index == n or current_sum > target_sum:
-        return False
+def solve():
+    n, sum = map(int,input().split())
+    arr = list(map(int,input().split()))
 
-    if subset_sum(index + 1, current_sum + arr[index]):
-        return True
-    if subset_sum(index + 1, current_sum):
-        return True
+    def bkt_sum(ind, rem):
+        if rem == 0:
+            return True
+        if ind == n:
+            return False
+        if rem < 0:
+            return False
+        
+        if bkt_sum(ind+1 , rem - arr[ind]):
+            return True
+        if bkt_sum(ind+1, rem):
+            return True
+        
+        return False
     
-    return False
- 
-if subset_sum(0, 0):
-    print("YES")
-else:
-    print("NO")
+    print("YES" if bkt_sum(0, sum) else "NO")
+
+solve()
