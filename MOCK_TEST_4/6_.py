@@ -86,3 +86,33 @@ This problem is based on LeetCode 787: Cheapest Flights Within K Stops.
 
 
  """
+import heapq
+from collections import defaultdict,deque
+def solve():
+    ## take input
+    n,m,src,dst,k = map(int,input().split())
+    ## make a graph
+    edges = []
+    for _ in range(m):
+        u,v,w = map(int,input().split())
+        edges.append((u,v,w))
+        
+    dist = {}
+    for i in range(n):
+        dist[i] = float('inf')
+    dist[src] = 0
+
+    ##Bellman-Ford algorithm
+    for _ in range(k+1):
+        temp = dist.copy()
+        for u,v,w in edges:
+            if dist[u] != float('inf'):
+                temp[v] = min(temp[v], dist[u]+ w)
+        dist = temp  
+
+
+    if dist[dst] == float('inf'):
+        print(-1)
+    else:
+        print(dist[dst])
+solve()
