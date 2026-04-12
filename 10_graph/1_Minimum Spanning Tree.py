@@ -36,28 +36,16 @@ Copy
     4
 The MST picks edges (2,3) with weight 1, (3,4) with weight 2, and (1,2) with weight 3. Total MST weight = 1 + 2 + 3 = 6.
  """
+from collections import defaultdict
+def solve()
+    ## take input
+    n,m = map(int, input().split())
+    graph = defaultdict(list)
 
-""" import bisect
+    for _ in range():
+        u,v,w = map(int, input().split())
+        graph[u].append((v,w))
+        graph[v].append((u,w))
 
-def nextGreatestLetter(letters, target):
-    tar = bisect.bisect_right(letters, target)
-    if tar == len(letters):
-        return letters[0]
-    else:
-        return letters[tar]
-letters = ["x","x","y","y"]
-target = 'z'
-print(nextGreatestLetter(letters, target)) """
-
-
-import bisect
-def countNegatives(grid):
-    count = 0
-    zero = 0
-    for row in grid:
-        row.sort()
-        tar = bisect.bisect_left(row,zero)
-        count += tar
-    return count
-grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
-print(countNegatives(grid))
+    
+solve()
