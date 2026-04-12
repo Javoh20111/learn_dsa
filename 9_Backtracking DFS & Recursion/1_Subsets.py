@@ -42,25 +42,22 @@ input = sys.stdin.readline
 def solve():
     ## Take input
     n = int(input())
-    arr = list(map(int, input().split()))
+    arr = list(map(int,input().split()))
     arr.sort()
+    subsets = list()
 
-    ## create a list for storing subsets
-    subsets = []
-
-    ## implement backtracking
-    def bactracking(start, path):
+    ## create backtracking 
+    def bkt(start, path):
         subsets.append(path[:])
         for i in range(start, n):
             path.append(arr[i])
-            bactracking(i+1, path)
+            bkt(i+1, path)
             path.pop()
-    bactracking(0, [])
+    bkt(0,[])
 
-    ## Sort the result by length
     subsets.sort()
     subsets.sort(key=len)
 
-    for s in subsets:
-        print(*s)
+    for i in subsets:
+        print(*i)
 solve()
