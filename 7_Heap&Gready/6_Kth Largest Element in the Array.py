@@ -23,5 +23,7 @@ n,k = map(int, input().split())
 arr = list(map(int, input().split()))
 heapify(arr)
 
-print(nlargest(k, arr)[-1])
+for i in range(k):
+    heappop(arr)
+print(arr[-1])
 

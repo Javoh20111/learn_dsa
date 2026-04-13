@@ -20,13 +20,10 @@ Changing the first 6 (second digit) to 9 gives 9969, which is the maximum. Chang
 
 n = int(input())
 dev = 10000
-lis = []
-lis.append(n)
 for i in range(4):
     dev /= 10
     res = (n // dev) % 10 
     if res == 6:
         final_res = int(n+(dev*3))
-        lis.append(final_res)
         break
-print(max(lis))
+print(final_res)
