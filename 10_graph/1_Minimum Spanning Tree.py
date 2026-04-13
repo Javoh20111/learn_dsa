@@ -36,54 +36,48 @@ Copy
     4
 The MST picks edges (2,3) with weight 1, (3,4) with weight 2, and (1,2) with weight 3. Total MST weight = 1 + 2 + 3 = 6.
  """
+
 import sys
 input = sys.stdin.readline
 
 def solve():
-    ## Step 1
-    ## get input
-    n, m = map(int, input().split())
-
-    ## put elements in edges
+    ## take itput 1 step
+    n,m = map(int,input().split())
     edges = []
+
     for _ in range(m):
-        u, v, w = map(int, input().split())
-        edges.append((w, u, v))
-    ## Sort it
+        u,v,w = map(int,input().split())
+        edges.append((w,u,v))
     edges.sort()
 
-    ## Step 4 
-    parent = list(range(n + 1))
-    rank   = [0] * (n + 1)
-
+    ## Step 4 find root
+    parent = list(range(n+1))
+    rank = [0]*(n+1)
     def find(x):
-        if parent[x] != x: # path compression
+        if parent[x] != x:
             parent[x] = find(parent[x])
         return parent[x]
 
-    ## Step 3: 
-    def union(x, y):
-        px, py = find(x), find(y)
+    def union(x,y):
+        px, py = find(x),find(y)
         if px == py:
             return False
         if rank[px] < rank[py]:
             px, py = py, px
         parent[py] = px
         if rank[px] == rank[py]:
-            rank[px] += 1
+            rank[px]+=1
         return True
 
+    ## step-2
     total = 0
-    edges_used = 0
-    ## Step 2: Loop through elements. Main loop
+    max_edges = 0
+
     for w, u, v in edges:
-        ## call union-function
-        if union(u, v):
+        if union(u,v):
             total += w
-            edges_used += 1
-            if edges_used == n - 1:
-                break
-
+            max_edges += 1
+        if max_edges == n-1:
+            break
     print(total)
-
 solve()

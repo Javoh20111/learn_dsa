@@ -56,3 +56,7 @@ Copy
 Offices {1,2} and {3,4} are in separate groups. It is impossible to connect all offices.
  """
 
+import sys
+input = sys.stdin.readline
+
+def 
