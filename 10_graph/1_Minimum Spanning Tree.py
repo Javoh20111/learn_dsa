@@ -36,16 +36,54 @@ Copy
     4
 The MST picks edges (2,3) with weight 1, (3,4) with weight 2, and (1,2) with weight 3. Total MST weight = 1 + 2 + 3 = 6.
  """
-from collections import defaultdict
+import sys
+input = sys.stdin.readline
+
 def solve():
-    ## take input
-    n,m = map(int, input().split())
-    graph = defaultdict(list)
+    ## Step 1
+    ## get input
+    n, m = map(int, input().split())
 
-    for _ in range():
-        u,v,w = map(int, input().split())
-        graph[u].append((v,w))
-        graph[v].append((u,w))
+    ## put elements in edges
+    edges = []
+    for _ in range(m):
+        u, v, w = map(int, input().split())
+        edges.append((w, u, v))
+    ## Sort it
+    edges.sort()
 
-    
+    ## Step 4 
+    parent = list(range(n + 1))
+    rank   = [0] * (n + 1)
+
+    def find(x):
+        if parent[x] != x: # path compression
+            parent[x] = find(parent[x])
+        return parent[x]
+
+    ## Step 3: 
+    def union(x, y):
+        px, py = find(x), find(y)
+        if px == py:
+            return False
+        if rank[px] < rank[py]:
+            px, py = py, px
+        parent[py] = px
+        if rank[px] == rank[py]:
+            rank[px] += 1
+        return True
+
+    total = 0
+    edges_used = 0
+    ## Step 2: Loop through elements. Main loop
+    for w, u, v in edges:
+        ## call union-function
+        if union(u, v):
+            total += w
+            edges_used += 1
+            if edges_used == n - 1:
+                break
+
+    print(total)
+
 solve()

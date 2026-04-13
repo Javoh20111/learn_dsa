@@ -57,7 +57,6 @@ def solve():
             for neighbor in graph[node]:
                 if neighbor not in visited:
                     stack.append(neighbor)
-
     ## Count compounds
     for node in range(n):
         if node not in visited:
