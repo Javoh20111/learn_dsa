@@ -37,7 +37,7 @@ Copy
 The MST picks edges (2,3) with weight 1, (3,4) with weight 2, and (1,2) with weight 3. Total MST weight = 1 + 2 + 3 = 6.
  """
 from collections import defaultdict
-def solve()
+def solve():
     ## take input
     n,m = map(int, input().split())
     graph = defaultdict(list)

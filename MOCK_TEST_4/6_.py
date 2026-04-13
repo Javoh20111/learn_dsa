@@ -96,7 +96,7 @@ def solve():
     for _ in range(m):
         u,v,w = map(int,input().split())
         edges.append((u,v,w))
-        
+
     dist = {}
     for i in range(n):
         dist[i] = float('inf')

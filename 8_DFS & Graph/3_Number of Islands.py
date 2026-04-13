@@ -65,7 +65,7 @@ def solve():
                     if grid[new_row][new_col] == 1:
                         if (new_row,new_col) not in visited:
                             stack.append((new_row,new_col))
-                            
+
     ## make a loop to find islands
     count = 0
     for row in range(m):

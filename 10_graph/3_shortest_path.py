@@ -2,7 +2,7 @@
 You are given a weighted directed graph with N nodes and M edges. Find the shortest distance from node S to node T.
 
 Input
-The first line contains two integers N and M (2 ≤ N ≤ 10^5, 0 ≤ M ≤ 2×10^5) — the number of nodes and edges.
+The first line contains two integers N and M (2 ≤ N ≤ 10^5, 0 ≤ M ≤ 2*10^5) — the number of nodes and edges.
 
 The second line contains two integers S and T (1 ≤ S, T ≤ N, S ≠ T) — the source and target nodes.
 
