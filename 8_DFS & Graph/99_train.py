@@ -24,38 +24,35 @@ graph = {
 print(f'nodes visited: {dfs(0, graph)}') """
 
 
-def count_components(graph):
-    """Count how many connected components are in the graph"""
-    
-    visited = set()  # Track visited nodes
-    components = 0   # Count of components
-    
-    def dfs(node):
-        """Explore one complete component"""
-        visited.add(node)
-        print(f"  Visiting: {node}")
-        
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                dfs(neighbor)
-    
-    # Check each node
-    for node in graph:
-        if node not in visited:
-            print(f"\nFound new component! Starting DFS from {node}")
-            dfs(node)
-            components += 1
-            print(f"Visited so far: {visited}")
-    
-    return components
-# Example
-graph = {
-    0: [1],
-    1: [0],
-    2: [3],
-    3: [2, 4],
-    4: [3]
-}
+from collections import defaultdict,deque
+import sys
+input = sys.stdin.readline
 
-result = count_components(graph)
-print(f"\n\nTotal components: {result}")
+def solve():
+    ## take input
+    n, m = map(int, input().split())
+    ## make a graph
+    graph = defaultdict(list)
+    for _ in range(n-1):
+        a, b = map(int, input().split())
+        graph[a].append(b)
+        graph[b].append(a)
+    r = int(input())
+    ## make dfs and variables to track
+    stack = deque()
+    visited = set()
+
+    stack.append((0,0))
+
+    while stack:
+        node,count = stack.pop()
+        if node in visited:
+            continue
+        visited.add(node)
+        if node == r:
+            continue
+        for neigbor in graph[node]:
+            if neigbor not in visited:
+                stack.append((visited, count + 1))
+    print(count)
+solve()

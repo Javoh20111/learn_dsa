@@ -57,14 +57,28 @@ This problem is based on LeetCode 91: Decode Ways.
 
 
 
-import string
-n = int(input())
+def solve(s):
+    length = len(s)
+    if s[0] == '0':
+        print(0)
+        return
+    temp = [0] * (length+1)
+    temp[0] = 1
+    temp[1] = 1
 
-upper_letters = list(string.ascii_uppercase)
-dictionary = dict()
+    for i in range(2, length+1):
+        o_d = int(s[i-1])
+        t_d = int(s[i-2: i])
 
-count = 1
-for i in upper_letters:
-    dictionary[i] = count
-    count+=1
+        if 1<= o_d <= 9:
+            temp[i] += temp[i-1]
+        if 10 <= t_d <=26:
+            temp[i]+=temp[i-2]
+    if temp[length] == 0:
+        print(0)
+    else:
+        print(temp[length])
 
+
+s = input().strip()
+solve(s)
