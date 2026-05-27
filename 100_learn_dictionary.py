@@ -25,3 +25,93 @@ print(least,most) """
 
 for k in sorted(prices.keys()):
     print(k, prices[k]) """
+
+""" keys = ["name", "age", "city"]
+values = ["Ana", 19, "Lisbon"]
+
+person = dict(zip(keys,values))
+ """
+
+""" students = ["Ana", "Tomás", "João"]
+grades = [15, 12, 18]
+
+results = dict(zip(students, grades))
+print(results) """
+
+
+""" marks = {"math": 15, "history": 12, "physics": 18, "english": 14}
+res = 0
+
+for k, v in marks.items():
+    res+=v
+
+if res == 0:
+    print("NO data")
+else:
+    print(res/len(marks)) """
+
+
+""" text = input("Enter a sentence ")
+
+for ch in text:
+    if ch in ",.!?;:":
+        text = text.replace(ch, "")
+words = text.split()
+
+
+freq = {}
+for word in words:
+    for ch in word:
+        freq[ch] = freq.get(ch, 0) + 1
+
+print("Vocabulary size:", len(freq))
+
+for w in sorted(freq.keys()):
+    print(w, "→", freq[w])
+
+top = max(freq, key=freq.get)
+print("Most frequent:", top, freq[top]) """
+
+
+
+MENU = {
+ "espresso": 2.00,
+ "latte": 3.50,
+ "tea": 1.80,
+ "sandwich": 5.20,
+ "cake": 3.00
+}
+
+def is_item_available(name):
+    if name in MENU:
+        return True
+    else:
+        return False
+    
+def build_order():
+    orders = []
+    for pro,price in MENU.items():
+        print(f"{pro:<10} --> {price:>5}")
+
+    order = input("What do you order or (done to finish): ").lower()
+    while order != "done":
+        if is_item_available(order):
+            quantity = -1
+            while quantity < 0:
+                try:
+                    quantity = int(input("Please specify a quantity: "))
+                except:
+                    print("Please enter a number")
+            orders.append({
+                            "name": order,
+                           "quantity": quantity,
+                           "unit_price": MENU[order],
+                           "line_total":quantity*MENU[order]
+                           })
+        else:
+            print("Item not on menu")
+        order = input("What do you order or (done to finish): ").lower()
+    return orders
+
+def checkout(order):
+    
