@@ -163,7 +163,7 @@ def generate_receipt(orders, totals):
 order = build_order()
 
 def save_receipt(text):
-    
+    pass
 
 
 generate_receipt(order , checkout(order))
