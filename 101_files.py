@@ -4,9 +4,13 @@ with open(file_name, "w", encoding="utf-8") as f:
     f.write("Javohir\n")
     f.write("Eshonov\n") """
 
-file_name = "contacts.txt"
 
-with open(file_name, "w", encoding="utf-8") as f:
-    f.write("Alice, 23")
-    f.write("\nBruno, 19")
-    f.write("\nCarla, 31")
+source = input("Please provide source: ")
+destination = input("Please provide destination: ")
+
+
+with open(source, "r", encoding="utf-8") as f:
+    data = f.read()
+
+with open(destination, "w", encoding="utf-8") as d:
+    d.write(data)
