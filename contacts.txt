@@ -1,2 +1,9 @@
-Javohir
-Eshonov
+Sarah,22
+John,18
+Emma,25
+Bekzod,20
+Maria,21
+Daniel,24
+Madina,23
+Lucas,26
+Aisha,19
