@@ -69,3 +69,37 @@ with open("people.csv", "w",  newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
     writer.writerows(people) """
 
+""" with open("people.csv", "r", encoding="utf-8") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)  """
+
+
+
+""" with open("people.csv", "a+", encoding="utf-8") as f:
+    num = int(input("The number students: "))
+    for i in range(num):
+        name = input("What is your name: ")
+        age = int(input("Enter your age: "))
+        writer = csv.writer(f)
+        writer.writerow([name,age])
+
+with open("people.csv", "r", encoding="utf-8") as f:
+    print(f"\n{'NAME':<8}{'AGE':>7}\n--------------------")
+
+    reader = csv.reader(f)
+    for line in reader:
+        if len(line) != 2:
+            print(f"Warning: Skipping malformed line: {line}")
+            continue
+
+        name,age = line
+        print(f"{name:<10}{age:>5}")"""
+
+import os 
+
+path = "contacts.txt"
+if os.path.isfile(path):
+    print("File exists")
+else:
+    print("Missing file")
