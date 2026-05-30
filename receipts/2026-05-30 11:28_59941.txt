@@ -1,0 +1,15 @@
+
+------------------------------
+item     Qty Unit Line
+cake      23  3.0 69.0
+------------------------------
+subtotal        69.0
+subtotal         0.0
+subtotal        69.0
+------------------------------
+item     Qty Unit Line
+tea        2  1.8  3.6
+------------------------------
+subtotal         3.6
+subtotal         0.0
+subtotal         3.6

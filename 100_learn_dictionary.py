@@ -74,6 +74,7 @@ print("Most frequent:", top, freq[top]) """
 
 from datetime import datetime
 import random
+import os
 
 MENU = {
  "espresso": 2.00,
@@ -160,10 +161,28 @@ def generate_receipt(orders, totals):
     print(f"{'subtotal':<15}{totals['discount']:>5}")
     print(f"{'subtotal':<15}{totals['grand_total']:>5}")
 
+    def save_receipt():
+        path = "receipts"
+        os.makedirs(path, exist_ok=True)
+        file_name = (f"receipts/{string_date}_{receipt_number}.txt")
+        with open(file_name, "+a", encoding="utf-8") as f:
+            f.write(f"\n# {receipt_number} {string_date}")
+            f.write("\n"+30*"-")
+            f.write(f"\n{'item':<7}{'Qty':>5}{'Unit':>5}{'Line':>5}")
+            for order in orders:
+                f.write(
+                    f"\n{order['name']:<7}"
+                    f"{order['quantity']:>5}"
+                    f"{order['unit_price']:>5}"
+                    f"{order['line_total']:>5}"
+                )
+            f.write("\n"+30*"-")
+            f.write(f"\n{'subtotal':<15}{totals['subtotal']:>5}")
+            f.write(f"\n{'subtotal':<15}{totals['discount']:>5}")
+            f.write(f"\n{'subtotal':<15}{totals['grand_total']:>5}")
+
+    save_receipt()
+
+
 order = build_order()
-
-def save_receipt(text):
-    pass
-
-
 generate_receipt(order , checkout(order))

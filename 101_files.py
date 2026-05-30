@@ -96,10 +96,12 @@ with open("people.csv", "r", encoding="utf-8") as f:
         name,age = line
         print(f"{name:<10}{age:>5}")"""
 
-import os 
+""" import os 
 
 path = "contacts.txt"
 if os.path.isfile(path):
     print("File exists")
 else:
     print("Missing file")
+ """
+

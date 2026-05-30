@@ -1,0 +1,8 @@
+
+------------------------------
+item     Qty Unit Line
+cake          3    3.00      9.00
+------------------------------
+subtotal         9.0
+subtotal         0.0
+subtotal         9.0
