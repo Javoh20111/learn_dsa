@@ -105,3 +105,18 @@ else:
     print("Missing file")
  """
 
+with open("contacts.txt", "r", encoding="utf-8") as f:
+    approval = input("Do you create new cleaned file (yes/no): ").lower()
+    for line in f:
+        if line == "\n":
+            continue
+        else:
+            line = line.strip().split(",")
+            name = line[0].strip().lower().title()
+            age = int(line[1].strip())
+
+            if approval == "yes":
+                with open('cleaned_contacts.txt', "a+", encoding="utf-8") as cf:
+                    cf.write(f"{name} - {age}\n")
+            else:
+                print("Bye!")
