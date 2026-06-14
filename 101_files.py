@@ -105,7 +105,7 @@ else:
     print("Missing file")
  """
 
-with open("contacts.txt", "r", encoding="utf-8") as f:
+""" with open("contacts.txt", "r", encoding="utf-8") as f:
     approval = input("Do you create new cleaned file (yes/no): ").lower()
     for line in f:
         if line == "\n":
@@ -119,4 +119,32 @@ with open("contacts.txt", "r", encoding="utf-8") as f:
                 with open('cleaned_contacts.txt', "a+", encoding="utf-8") as cf:
                     cf.write(f"{name} - {age}\n")
             else:
-                print("Bye!")
+                print("Bye!") """
+
+""" file_name = input("Enter file path or name: ")
+try:
+    with open(file_name, "r", encoding="utf-8") as f:
+        line_count = 0
+        word_count = 0
+        no_newlines = 0
+        char_count_no_newlines = 0
+        for line in f:
+            line_count +=1
+            line = line.strip().split()
+            for elem in line:
+                word_count +=1
+                for ch in elem:
+                        if ch == "\n":
+                            no_newlines +=1
+                            continue
+                        else:
+                            char_count_no_newlines+=1
+    print(f"line_count: {line_count}")
+    print(f"word_count: {word_count}")
+    print(f"char_count_with_newlines: {char_count_no_newlines + no_newlines}")
+    print(f"char_count_no_newlines: {char_count_no_newlines}")
+
+except FileNotFoundError:
+    print("Print file not found!")
+ """
+

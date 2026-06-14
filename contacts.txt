@@ -1,5 +1,0 @@
- Alice ,23
-
-
-Bruno,19
-Carla, 31
