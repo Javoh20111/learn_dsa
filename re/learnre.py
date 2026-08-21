@@ -25,7 +25,7 @@ Mr. T
 setence = "In this Python Programming Tutorial, we will be learning how to read, write, and match regular expressions with the re module. Regular expressions are extremely useful for matching common patterns of text such as email addresses, phone numbers, URLs, etc. Learning how to do this within Python will allow us to quickly parse files and text for the information we need. Let's get started..."
 
 
-pattern = re.compile(r'coreyms\.com')
+pattern = re.compile(r'\d\d\d[-.]\d\d\d[-.]\d\d\d\d')
 matches = pattern.finditer(text_to_search)
 for match in matches:
     print(match)
